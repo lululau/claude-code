@@ -1,0 +1,12 @@
+{
+  "name": "claude-code-leaked-source",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Leaked Claude Code source (from npm sourcemap) — for study/LSP navigation only. Not a buildable product.",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

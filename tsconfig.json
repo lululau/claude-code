@@ -1,0 +1,38 @@
+{
+  // Leaked Claude Code source — configured for LSP navigation only (no build).
+  // The real build uses Bun; this tsconfig exists so tsserver / typescript-language-server
+  // can resolve the `src/*` path alias used in 1000+ imports, and index the project.
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    // Source uses explicit extensions (`.js`, `.mjs`) on relative imports — Bundler
+    // resolution handles these and the `src/*` alias correctly.
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react-jsx",
+    "skipLibCheck": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": false,
+    "strict": false,
+    "noImplicitAny": false,
+    // Don't pull in @types/node globally — ambient-modules.d.ts covers bare imports.
+    "types": [],
+    // Resolve the `src/...` absolute alias used throughout the codebase.
+    // `baseUrl` is needed so non-relative `paths` keys resolve correctly; it's
+    // deprecated in TS 6.0 only nominally, so we acknowledge it explicitly.
+    "ignoreDeprecations": "6.0",
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["src/*"],
+      "bun:bundle": ["src/types/bun-bundle.ts"],
+      "bun:*": ["src/types/bun-bundle.ts"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules", "dist"]
+}
